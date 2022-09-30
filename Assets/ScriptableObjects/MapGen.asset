@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8821818f7796ed84a9e9fe55f5ee79b5, type: 3}
+  m_Name: MapGen
+  m_EditorClassIdentifier: 
+  mapGenData:
+    seed: 0
+    mapRadius: 5
+    maxTerrainHeight: 1
+    maxTerrainBottom: 1
+  mapGenPrefabs:
+  - {fileID: 1022908408826471230, guid: 95cd30e9b3d275c47901f73b122c705c, type: 3}
