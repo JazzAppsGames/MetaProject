@@ -495,11 +495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 0
-  mapSizeInChunks: 6
+  mapSizeInChunks: 10
   chunkSize: 16
-  chunkHeight: 100
-  waterLevel: 39
-  noiseScale: 0.03
+  chunkHeight: 50
+  waterLevel: 20
+  noiseScale: 0.05
   chunkPrefab: {fileID: 6043607575948292007, guid: e753689e85346fd46b1aafe6dfdec323,
     type: 3}
 --- !u!4 &788698424

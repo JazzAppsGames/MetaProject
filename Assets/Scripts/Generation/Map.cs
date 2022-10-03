@@ -79,7 +79,6 @@ namespace JazzApps
                             {
                                 voxelType = BlockType.AIR;
                             }
-
                         }
                         else if (y == groundPosition)
                         {
