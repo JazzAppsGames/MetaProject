@@ -81,7 +81,9 @@ namespace JazzApps
                             meshData.waterMesh = GetFaceDataIn(direction, chunk, pos, meshData.waterMesh, blockType);
                     }
                     else
+                    {
                         meshData = GetFaceDataIn(direction, chunk, pos, meshData, blockType);
+                    }
                 }
             }
             return meshData;
