@@ -80,7 +80,7 @@ namespace JazzApps
                                 voxelType = BlockType.AIR;
                             }
                         }
-                        else if (y == groundPosition)
+                        if (y == groundPosition)
                         {
                             voxelType = BlockType.GRASS_DIRT;
                         }
