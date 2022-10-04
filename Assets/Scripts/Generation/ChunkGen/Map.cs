@@ -72,17 +72,18 @@ namespace JazzApps
                         if (y > groundPosition)
                         {
                             if (y < waterLevel)
-                            {
                                 voxelType = BlockType.WATER;
-                            }
                             else
-                            {
                                 voxelType = BlockType.AIR;
-                            }
                         }
-                        else if (y == groundPosition)
+                        else if (y < waterLevel)
+                            voxelType = BlockType.SAND;
+                        if (y == groundPosition)
                         {
-                            voxelType = BlockType.GRASS_DIRT;
+                            if (y < waterLevel)
+                                voxelType = BlockType.SAND;
+                            else if (y >= waterLevel)
+                                voxelType = BlockType.GRASS_DIRT;
                         }
 
                         Chunk.SetBlock(data, new Vector3Int(x, y, z), voxelType);

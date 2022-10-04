@@ -35,11 +35,10 @@ namespace JazzApps
             mesh = meshFilter.mesh;
         }
 
-        public void InitializeChunk(ChunkData chunkData)
-        {
-            this.ChunkData = chunkData;
-        }
+        public void InitializeChunk(ChunkData chunkData) => this.ChunkData = chunkData;
 
+        public void UpdateChunk(MeshData data) => RenderMesh(data);
+        
         private void RenderMesh(MeshData meshData)
         {
             mesh.Clear();
@@ -60,16 +59,6 @@ namespace JazzApps
             collisionMesh.RecalculateNormals();
 
             meshCollider.sharedMesh = collisionMesh;
-        }
-
-        public void UpdateChunk()
-        {
-            RenderMesh(Chunk.GetChunkMeshData(ChunkData));
-        }
-
-        public void UpdateChunk(MeshData data)
-        {
-            RenderMesh(data);
         }
         
 #if UNITY_EDITOR
