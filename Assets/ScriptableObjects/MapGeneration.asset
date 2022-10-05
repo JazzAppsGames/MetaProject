@@ -12,11 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8105e9ed65714d449de38aed9c07fc2, type: 3}
   m_Name: MapGeneration
   m_EditorClassIdentifier: 
-  seed: -14025
+  seed: 20019
   mapSizeInChunks: 12
   chunkSize: 16
   chunkHeight: 100
-  waterLevel: 50
+  waterLevel: 10
   noiseScale: 0.03
+  noiseConfiguration:
+    noiseZoom: 0.01
+    octaves: 5
+    offset: {x: -100, y: 3400}
+    worldOffset: {x: 20019, y: 20019}
+    persistence: 0.5
+    redistributionModifier: 1.2
+    exponent: 5
   chunkPrefab: {fileID: 6043607575948292007, guid: e753689e85346fd46b1aafe6dfdec323,
     type: 3}

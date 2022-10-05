@@ -8,10 +8,15 @@ namespace JazzApps
     {
         public ChunkData ProcessChunkColumn(SOMapConfiguration mapConfiguration, ChunkData data, int x, int z)
         {
+            mapConfiguration.noiseConfiguration.worldOffset = new Vector2Int { x = mapConfiguration.seed, y = mapConfiguration.seed };
+            int groundPosition = GetSurfaceHeightNoise(mapConfiguration.noiseConfiguration, data.mapPosition.x + x, data.mapPosition.z + z, data.chunkHeight);
+            
+            /* OLD
             float noiseValue = Mathf.PerlinNoise(
                 ((mapConfiguration.seed*mapConfiguration.noiseScale) + data.mapPosition.x + x) * mapConfiguration.noiseScale,
                 ((mapConfiguration.seed*mapConfiguration.noiseScale) + data.mapPosition.z + z) * mapConfiguration.noiseScale);
             int groundPosition = Mathf.RoundToInt(noiseValue * mapConfiguration.chunkHeight);
+            */
             for (int y = 0; y < mapConfiguration.chunkHeight; y++)
             {
                 BlockType voxelType = BlockType.DIRT;
@@ -35,6 +40,14 @@ namespace JazzApps
                 Chunk.SetBlock(data, new Vector3Int(x, y, z), voxelType);
             }
             return data;
+        }
+
+        private int GetSurfaceHeightNoise(NoiseConfiguration config, int x, int z, int chunkHeight)
+        {
+            float terrainHeight = NoiseGenerator.OctavePerlin(x, z, config);
+            terrainHeight = NoiseGenerator.Redistribution(terrainHeight, config);
+            int surfaceHeight = NoiseGenerator.RemapValue01ToInt(terrainHeight, 0, chunkHeight);
+            return surfaceHeight;
         }
     }
 }
