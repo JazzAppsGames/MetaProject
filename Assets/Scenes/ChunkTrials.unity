@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 788698423}
   - component: {fileID: 788698426}
   - component: {fileID: 788698425}
+  - component: {fileID: 788698427}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -539,6 +540,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biomeGenerator: {fileID: 788698425}
+--- !u!114 &788698427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788698422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed026ba22fb6b343888f57fcbd92ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  airLH: {fileID: 0}
+  waterLH: {fileID: 0}
+  surfaceLH: {fileID: 0}
+  undergroundLH: {fileID: 0}
 --- !u!1 &1754448683
 GameObject:
   m_ObjectHideFlags: 0
