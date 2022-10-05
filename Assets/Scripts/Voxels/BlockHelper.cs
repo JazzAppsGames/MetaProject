@@ -246,9 +246,9 @@ namespace JazzApps
         {
             return new Vector3Int
             {
-                x = Mathf.FloorToInt(pos.x / (float)map.chunkSize) * map.chunkSize,
-                y = Mathf.FloorToInt(pos.y / (float)map.chunkHeight) * map.chunkHeight,
-                z = Mathf.FloorToInt(pos.z / (float)map.chunkSize) * map.chunkSize,
+                x = Mathf.FloorToInt(pos.x / (float)map.config.chunkSize) * map.config.chunkSize,
+                y = Mathf.FloorToInt(pos.y / (float)map.config.chunkHeight) * map.config.chunkHeight,
+                z = Mathf.FloorToInt(pos.z / (float)map.config.chunkSize) * map.config.chunkSize,
             };
         }
     }
