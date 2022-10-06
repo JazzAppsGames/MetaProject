@@ -1,17 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Codice.Client.Common;
 using JazzApps;
 using UnityEngine;
 
 public class BlockLayers : MonoBehaviour
 {
-    public AirLayerHandler airLH;
-    public WaterLayerHandler waterLH;
-    public SurfaceLayerHandler surfaceLH;
-    public UndergroundLayerHandler undergroundLH;
+    private AirLayerHandler airLH;
+    private WaterLayerHandler waterLH;
+    private SurfaceLayerHandler surfaceLH;
+    private UndergroundLayerHandler undergroundLH;
+
+    public void Initialize()
+    {
+        // The first preset
+        airLH.Next = waterLH;
+        waterLH.Next = surfaceLH;
+        surfaceLH.Next = undergroundLH;
+        undergroundLH.Next = null;
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
 }
-[System.Serializable]
 public class AirLayerHandler : BlockLayerHandler
 {
     public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset)
@@ -24,7 +37,6 @@ public class AirLayerHandler : BlockLayerHandler
         return false;
     }
 }
-[System.Serializable]
 public class WaterLayerHandler : BlockLayerHandler
 {
     public int waterLevel;
@@ -43,7 +55,6 @@ public class WaterLayerHandler : BlockLayerHandler
         return false;
     }
 }
-[System.Serializable]
 public class SurfaceLayerHandler : BlockLayerHandler
 {
     public BlockType surfaceblockType;
@@ -57,7 +68,6 @@ public class SurfaceLayerHandler : BlockLayerHandler
         return false;
     }
 }
-[System.Serializable]
 public class UndergroundLayerHandler : BlockLayerHandler
 {
     public BlockType undergroundblockType;
