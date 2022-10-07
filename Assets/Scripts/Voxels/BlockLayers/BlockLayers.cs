@@ -6,30 +6,36 @@ using UnityEngine;
 
 public class BlockLayers : MonoBehaviour
 {
-    private AirLayerHandler airLH;
-    private WaterLayerHandler waterLH;
-    private SurfaceLayerHandler surfaceLH;
-    private UndergroundLayerHandler undergroundLH;
+    // Internals
+    private AirLayerHandler airLH = new AirLayerHandler();
+    private WaterLayerHandler waterLH = new WaterLayerHandler();
+    private SurfaceLayerHandler surfaceLH = new SurfaceLayerHandler();
+    private UndergroundLayerHandler undergroundLH = new UndergroundLayerHandler();
+    private BlockLayerHandler first;
 
-    public void Initialize()
+    public BlockLayerHandler GetStartLayer(SOMapConfiguration config)
     {
-        // The first preset
-        airLH.Next = waterLH;
-        waterLH.Next = surfaceLH;
+        // TODO: Implement changing the block handling via customization
+        waterLH.waterLevel = config.waterLevel;
+        surfaceLH.surfaceblockType = BlockType.GRASS_DIRT;
+        undergroundLH.undergroundblockType = BlockType.DIRT;
+
+        BlockLayerHandler first = waterLH;
+        waterLH.Next = airLH;
+        airLH.Next = surfaceLH;
         surfaceLH.Next = undergroundLH;
         undergroundLH.Next = null;
-    }
 
-    private void Awake()
-    {
-        Initialize();
+        return first;
     }
+    
+    
 }
 public class AirLayerHandler : BlockLayerHandler
 {
-    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset)
+    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int groundPosition, Vector2Int mapSeedOffset)
     {
-        if (pos.y > surfaceHeightNoise)
+        if (pos.y > groundPosition)
         {
             Chunk.SetBlock(chunkData, pos, BlockType.AIR);
             return true;
@@ -40,14 +46,13 @@ public class AirLayerHandler : BlockLayerHandler
 public class WaterLayerHandler : BlockLayerHandler
 {
     public int waterLevel;
-    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset)
+    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int groundPosition, Vector2Int mapSeedOffset)
     {
-        if (pos.y > surfaceHeightNoise & pos.y <= waterLevel)
+        if (pos.y >= groundPosition & pos.y <= waterLevel)
         {
             Chunk.SetBlock(chunkData, pos, BlockType.WATER);
-            if (pos.y == surfaceHeightNoise + 1)
+            if (pos.y == groundPosition)
             {
-                pos.y = surfaceHeightNoise;
                 Chunk.SetBlock(chunkData, pos, BlockType.SAND);
             }
             return true;
@@ -58,9 +63,9 @@ public class WaterLayerHandler : BlockLayerHandler
 public class SurfaceLayerHandler : BlockLayerHandler
 {
     public BlockType surfaceblockType;
-    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset)
+    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int groundPosition, Vector2Int mapSeedOffset)
     {
-        if (pos.y == surfaceHeightNoise)
+        if (pos.y == groundPosition)
         {
             Chunk.SetBlock(chunkData, pos, surfaceblockType);
             return true;
@@ -71,9 +76,9 @@ public class SurfaceLayerHandler : BlockLayerHandler
 public class UndergroundLayerHandler : BlockLayerHandler
 {
     public BlockType undergroundblockType;
-    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset)
+    public override bool TryHandling(ChunkData chunkData, Vector3Int pos, int groundPosition, Vector2Int mapSeedOffset)
     {
-        if (pos.y < surfaceHeightNoise)
+        if (pos.y < groundPosition)
         {
             Chunk.SetBlock(chunkData, pos, undergroundblockType);
             return true;

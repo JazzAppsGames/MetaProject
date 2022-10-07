@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace JazzApps
 {
-    public abstract class BlockLayerHandler : MonoBehaviour
+    public abstract class BlockLayerHandler
     {
         // Encapsulated Fields
         public BlockLayerHandler Next { set => _next = value; }
@@ -20,7 +20,7 @@ namespace JazzApps
             return false;
         }
 
-        public abstract bool TryHandling(ChunkData chunkData, Vector3Int pos, int surfaceHeightNoise, Vector2Int mapSeedOffset);
+        public abstract bool TryHandling(ChunkData chunkData, Vector3Int pos, int groundPosition, Vector2Int mapSeedOffset);
     }
 }
 
