@@ -527,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95588c413d10836459417e840e54f6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockLayers: {fileID: 788698427}
 --- !u!114 &788698426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,10 +553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed026ba22fb6b343888f57fcbd92ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airLH: {fileID: 0}
-  waterLH: {fileID: 0}
-  surfaceLH: {fileID: 0}
-  undergroundLH: {fileID: 0}
 --- !u!1 &1754448683
 GameObject:
   m_ObjectHideFlags: 0

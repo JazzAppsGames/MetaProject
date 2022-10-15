@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8105e9ed65714d449de38aed9c07fc2, type: 3}
   m_Name: MapGeneration
   m_EditorClassIdentifier: 
-  seed: 22513
+  seed: -29984
   mapSizeInChunks: 12
   chunkSize: 16
   chunkHeight: 100
@@ -22,7 +22,7 @@ MonoBehaviour:
     noiseZoom: 0.01
     octaves: 5
     offset: {x: -100, y: 3400}
-    worldOffset: {x: 22513, y: 22513}
+    worldOffset: {x: -29984, y: -29984}
     persistence: 0.5
     redistributionModifier: 1.2
     exponent: 5
